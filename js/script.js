@@ -90,66 +90,152 @@ window.addEventListener('DOMContentLoaded', function(){
     itemSelectText: '',
     resetScrollPosition: false,
   });
-})
 
-
-
-
-
-window.addEventListener('DOMContentLoaded', function(){
-
-  const swiper1 = new Swiper('.swiper-container', {
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+  const gallery = document.querySelector('.gallery__select');
+  const choices6 = new Choices(gallery, {
+    searchEnabled: false,
+    shouldSort: false,
+    itemSelectText: '',
+    resetScrollPosition: false,
+    classNames: {
+      // containerOuter: 'gallery_choices__outer',
+      containerInner: 'gallery_choices__inner',
+      // list: 'gallery_choices__list',
+      // listDropdown: 'gallery_choices__list--dropdown',
+      item: 'gallery_choices__item',
+      // // itemSelectable: 'gallery_choices__item--selectable',
+      // // itemDisabled: 'gallery_choices__item--disabled',
+      // // itemChoice: 'gallery_choices__item--choice',
+      // // activeState: 'gallery.is-active',
+      // // focusState: 'gallery.is-focused',
+      openState: 'gallery.is-open',
     },
-    slidesPerView: 1,
+  });
+
+
+  const swiper1 = new Swiper('.gallery__swiper', {
+    navigation: {
+      nextEl: '.swiper-button-next1',
+      prevEl: '.swiper-button-prev1',
+    },
+    loop: true,
     slidesPerColumn: 1,
-    spaceBetween: 10,
+    slidesPerView: 1,
+    spaceBetween: 20,
     navigator: true,
     pagination: {
-      el: '.swiper-pagination',
+      el: '.swiper-pagination1',
       type: 'fraction',
     },
-    // Default parameters
-    // slidesPerView: 1,
-    // spaceBetween: 10,
-    // slidesPerColumn: 1,
-    // Responsive breakpoints
     breakpoints: {
       // when window width is >= 320px
       768: {
-        slidesPerView: 1,
-        slidesPerColumn: 1,
-        spaceBetween: 10,
+        slidesPerColumn: 2,
+        slidesPerView: 2,
+        spaceBetween: 34,
       },
       // when window width is >= 480px
       1024: {
-        slidesPerView: 1,
-        spaceBetween: 10,
-        slidesPerColumn: 1
+        slidesPerColumn: 2,
+        slidesPerView: 2,
+        spaceBetween: 20,
       },
       // when window width is >= 640px
       1920: {
-        slidesPerView: 1,
-        spaceBetween: 10
+        slidesPerColumn: 2,
+        slidesPerView: 3,
+        spaceBetween: 20,
       }
     },
     debugger: true,
   })
 
-  //Map
+  const swiper2 = new Swiper('.events__swiper', {
+
+    loop: true,
+    slidesPerColumn: 1,
+    slidesPerView: 1,
+    spaceBetween: 20,
+    navigator: true,
+    pagination: {
+      el: '.swiper-pagination2',
+      type: 'bullets',
+      clickable: true,
+    },
+    debugger: true,
+  })
+
+  const swiper_3 = new Swiper('.publications__swiper', {
+    navigation: {
+      nextEl: '.swiper-button-prev3',
+      prevEl: '.swiper-button-next3',
+    },
+    loop: true,
+    slidesPerView: 2,
+    spaceBetween: 34,
+    pagination: {
+      el: '.swiper-pagination3',
+      type: 'fraction',
+    },
+
+    // Default parameters
+    slidesPerView: 2,
+    spaceBetween: 34,
+    // Responsive breakpoints
+    breakpoints: {
+      1024: {
+        slidesPerView: 2,
+        spaceBetween: 49,
+      },
+      // when window width is >= 640px
+      1920: {
+        slidesPerView: 3,
+        spaceBetween: 50,
+      }
+    },
+    debugger: true,
+  })
+
+  const swiper_4 = new Swiper('.projects__swiper', {
+    navigation: {
+      nextEl: '.swiper-button-prev4',
+      prevEl: '.swiper-button-next4',
+    },
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 30,
+
+    // Default parameters
+    slidesPerView: 1,
+    spaceBetween: 10,
+    slidesPerColumn: 1,
+    // Responsive breakpoints
+    breakpoints: {
+      // when window width is >= 320px
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 34,
+      },
+      // when window width is >= 480px
+      1024: {
+        slidesPerView: 2,
+        spaceBetween: 34,
+      },
+      // when window width is >= 640px
+      1920: {
+        slidesPerView: 3,
+        spaceBetween: 50,
+      }
+    },
+    debugger: true,
+  })
+
+  Map
   ymaps.ready(init);
   function init(){
-    // Создание карты.
-    var myMap = new ymaps.Map("contacts__map", {
-      // Координаты центра карты.
-      // Порядок по умолчанию: «широта, долгота».
-      // Чтобы не определять координаты центра карты вручную,
-      // воспользуйтесь инструментом Определение координат.
+    var myMap = new ymaps.Map("yandex__map", {
+
       center: [48.872185, 2.354224],
-      // Уровень масштабирования. Допустимые значения:
-      // от 0 (весь мир) до 19.
       zoom: 13,
       controls: [],
     });
@@ -162,4 +248,23 @@ window.addEventListener('DOMContentLoaded', function(){
     myMap.geoObjects.add(myPlacemark)
   }
 
+  tippy('.projects__tooltip_1', {
+    content: 'Пример современных тенденций - современная методология разработки',
+    maxWidth: 264,
+    theme: 'purple',
+  });
+
+  tippy('.projects__tooltip_2', {
+    content: 'Приятно, граждане, наблюдать, как сделанные на базе аналитики выводы вызывают у вас эмоции',
+    maxWidth: 264,
+    theme: 'purple',
+  });
+
+  tippy('.projects__tooltip_3', {
+    content: 'В стремлении повысить качество',
+    maxWidth: 264,
+    theme: 'purple',
+  });
 })
+
+
