@@ -265,6 +265,63 @@ window.addEventListener('DOMContentLoaded', function(){
     maxWidth: 264,
     theme: 'purple',
   });
+
+  // Accordion
+  $( function() {
+    $( "#accordion" ).accordion({
+      collapsible: true,
+      icons: false,
+      border: false,
+      active: false,
+      heightStyle: "content",
+      autoHeight: false,
+    });
+  });
+
+  // Tabs
+  document.querySelectorAll('.catalog__painter-item').forEach(function(tabContent) {
+    tabContent.classList.remove('catalog__painter-item_active')
+  })
+  document.querySelector(`[data-target="one"]`).classList.add('catalog__painter-item_active')
+
+  // document.querySelectorAll('.section-work__nav-link').forEach(function(tabContent) {
+  //   tabContent.classList.remove('nav-link_active')
+  // })
+  // document.querySelector(`[data-path="one"]`).classList.add('nav-link_active')
+
+
+  document.querySelectorAll('.catalog__painterlink').forEach(function(sectionWorkNavLink) {
+    sectionWorkNavLink.addEventListener('click', function(event) {
+      const path = event.currentTarget.dataset.path
+
+      document.querySelectorAll('.catalog__painter-item').forEach(function(tabContent) {
+        tabContent.classList.remove('catalog__painter-item_active')
+      })
+      // document.querySelectorAll('.section-work__nav-link').forEach(function(tabContent) {
+      //   tabContent.classList.remove('nav-link_active')
+      // })
+      document.querySelector(`[data-target="${path}"]`).classList.add('catalog__painter-item_active')
+      // document.querySelector(`[data-path="${path}"]`).classList.add('nav-link_active')
+    })
+  })
+
+  // document.querySelectorAll('.section-work__nav-link').forEach(function(sectionWorkNavLink) {
+  //   sectionWorkNavLink.addEventListener('keydown', function(event) {
+  //     if (event.keyCode === 13) {
+
+  //       const path = event.currentTarget.dataset.path
+  //       document.querySelectorAll('.section-work__body').forEach(function(tabContent) {
+  //         tabContent.classList.remove('tab-content-active')
+  //       })
+  //       document.querySelectorAll('.section-work__nav-link').forEach(function(tabContent) {
+  //         tabContent.classList.remove('nav-link_active')
+  //       })
+
+  //       document.querySelector(`[data-target="${path}"]`).classList.add('tab-content-active')
+  //       document.querySelector(`[data-path="${path}"]`).classList.add('nav-link_active')
+  //     }
+  //   })
+  // })
 })
 
 
