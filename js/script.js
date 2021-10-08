@@ -28,6 +28,8 @@ window.addEventListener('DOMContentLoaded', function(){
     document.querySelector('.header__desktop-search').classList.remove('is-active')
   })
 
+  // Scrolling
+
   const anchors = document.querySelectorAll('a[href*="#"]')
 
   for (let anchor of anchors) {
@@ -48,8 +50,29 @@ window.addEventListener('DOMContentLoaded', function(){
     })
   }
 
+  // (function() {
+  //   if (Viewport.width <= 768)
+  //   {
+  //     const anchors1 = document.querySelectorAll('a.catalog__painterlink')
+
+  //     for (let anchor1 of anchors1) {
+  //       anchor1.addEventListener('click', function (e) {
+  //         e.preventDefault()
+
+  //         document.querySelector('.catalog__painter-item').scrollIntoView({
+  //           behavior: 'smooth',
+  //           block: 'start'
+  //         })
+  //       })
+  //     }
+  //   }
+  // })
+
   const element = document.querySelector('.custom-select');
   const choices = new Choices(element, {
+    classNames: {
+      containerOuter: 'heading__choices'
+    },
     searchEnabled: false,
     shouldSort: false,
     placeholder: true,
@@ -58,6 +81,9 @@ window.addEventListener('DOMContentLoaded', function(){
 
   const element2 = document.querySelector('.custom-select2');
   const choices2 = new Choices(element2, {
+    classNames: {
+      containerOuter: 'heading__choices'
+    },
     searchEnabled: false,
     shouldSort: false,
     placeholder: true,
@@ -66,6 +92,9 @@ window.addEventListener('DOMContentLoaded', function(){
 
   const element3 = document.querySelector('.custom-select3');
   const choices3 = new Choices(element3, {
+    classNames: {
+      containerOuter: 'heading__choices'
+    },
     searchEnabled: false,
     shouldSort: false,
     placeholder: true,
@@ -75,6 +104,9 @@ window.addEventListener('DOMContentLoaded', function(){
 
   const element4 = document.querySelector('.custom-select4');
   const choices4 = new Choices(element4, {
+    classNames: {
+      containerOuter: 'heading__choices'
+    },
     searchEnabled: false,
     shouldSort: false,
     placeholder: true,
@@ -84,6 +116,9 @@ window.addEventListener('DOMContentLoaded', function(){
 
   const element5 = document.querySelector('.custom-select5');
   const choices5 = new Choices(element5, {
+    classNames: {
+      containerOuter: 'heading__choices'
+    },
     searchEnabled: false,
     shouldSort: false,
     placeholder: true,
@@ -91,27 +126,17 @@ window.addEventListener('DOMContentLoaded', function(){
     resetScrollPosition: false,
   });
 
-  const gallery = document.querySelector('.gallery__select');
-  const choices6 = new Choices(gallery, {
+  const element6 = document.querySelector('.gallery-select');
+  const choices6 = new Choices(element6, {
+    classNames: {
+      containerOuter: 'gallery__choices',
+    },
     searchEnabled: false,
     shouldSort: false,
+    placeholder: true,
     itemSelectText: '',
     resetScrollPosition: false,
-    classNames: {
-      // containerOuter: 'gallery_choices__outer',
-      containerInner: 'gallery_choices__inner',
-      // list: 'gallery_choices__list',
-      // listDropdown: 'gallery_choices__list--dropdown',
-      item: 'gallery_choices__item',
-      // // itemSelectable: 'gallery_choices__item--selectable',
-      // // itemDisabled: 'gallery_choices__item--disabled',
-      // // itemChoice: 'gallery_choices__item--choice',
-      // // activeState: 'gallery.is-active',
-      // // focusState: 'gallery.is-focused',
-      openState: 'gallery.is-open',
-    },
   });
-
 
   const swiper1 = new Swiper('.gallery__swiper', {
     navigation: {
@@ -151,7 +176,6 @@ window.addEventListener('DOMContentLoaded', function(){
   })
 
   const swiper2 = new Swiper('.events__swiper', {
-
     loop: true,
     slidesPerColumn: 1,
     slidesPerView: 1,
@@ -185,12 +209,12 @@ window.addEventListener('DOMContentLoaded', function(){
     breakpoints: {
       1024: {
         slidesPerView: 2,
-        spaceBetween: 49,
+        spaceBetween: 0,
       },
       // when window width is >= 640px
       1920: {
         slidesPerView: 3,
-        spaceBetween: 50,
+        spaceBetween: 0,
       }
     },
     debugger: true,
@@ -224,7 +248,7 @@ window.addEventListener('DOMContentLoaded', function(){
       // when window width is >= 640px
       1920: {
         slidesPerView: 3,
-        spaceBetween: 50,
+        spaceBetween: 34,
       }
     },
     debugger: true,
@@ -241,7 +265,7 @@ window.addEventListener('DOMContentLoaded', function(){
     });
     myPlacemark = new ymaps.Placemark([48.872185, 2.354224], {}, {
       iconLayout: 'default#image',
-      iconImageHref: '/img/russia.svg',
+      iconImageHref: '/img/destination_point.svg',
       iconImageSize: [30, 42],
       iconImageOffset: [-5, -38]
     }),
@@ -266,6 +290,25 @@ window.addEventListener('DOMContentLoaded', function(){
     theme: 'purple',
   });
 
+  // First level tab
+
+  document.querySelectorAll('.catalog__tabitem').forEach(function(sectionWorkNavLink) {
+    sectionWorkNavLink.addEventListener('click', function(event) {
+      const path = event.currentTarget.dataset.path
+
+      document.querySelectorAll('.catalog__painter').forEach(function(tabContent) {
+        tabContent.classList.add('play-accordion')
+      })
+      document.querySelectorAll('.catalog__tabitem').forEach(function(tabContent) {
+        tabContent.classList.remove('is-active')
+      })
+      document.querySelector(`[data-path="${path}"]`).classList.add('is-active')
+      document.querySelectorAll(`[data-target="${path}"]`).forEach(function(tabContent) {
+        tabContent.classList.remove('play-accordion')
+      })
+    })
+  })
+
   // Accordion
   $( function() {
     $( "#accordion" ).accordion({
@@ -280,9 +323,9 @@ window.addEventListener('DOMContentLoaded', function(){
 
   // Tabs
   document.querySelectorAll('.catalog__painter-item').forEach(function(tabContent) {
-    tabContent.classList.remove('catalog__painter-item_active')
+    tabContent.classList.remove('item_active')
   })
-  document.querySelector(`[data-target="one"]`).classList.add('catalog__painter-item_active')
+  document.querySelector(`[data-target="111"]`).classList.add('item_active')
 
   // document.querySelectorAll('.section-work__nav-link').forEach(function(tabContent) {
   //   tabContent.classList.remove('nav-link_active')
@@ -295,13 +338,13 @@ window.addEventListener('DOMContentLoaded', function(){
       const path = event.currentTarget.dataset.path
 
       document.querySelectorAll('.catalog__painter-item').forEach(function(tabContent) {
-        tabContent.classList.remove('catalog__painter-item_active')
+        tabContent.classList.remove('item_active')
       })
-      // document.querySelectorAll('.section-work__nav-link').forEach(function(tabContent) {
-      //   tabContent.classList.remove('nav-link_active')
-      // })
-      document.querySelector(`[data-target="${path}"]`).classList.add('catalog__painter-item_active')
-      // document.querySelector(`[data-path="${path}"]`).classList.add('nav-link_active')
+      document.querySelectorAll('.catalog__painterlink').forEach(function(tabContent) {
+        tabContent.classList.remove('is-active')
+      })
+      document.querySelector(`[data-path="${path}"]`).classList.add('is-active')
+      document.querySelector(`[data-target="${path}"]`).classList.add('item_active')
     })
   })
 
@@ -322,6 +365,71 @@ window.addEventListener('DOMContentLoaded', function(){
   //     }
   //   })
   // })
+
+
+
+    // document.querySelector('.header__burger').addEventListener('keydown', function(e) {
+    //   if (e.keyCode === 13) {
+    //     document.querySelector('.header__nav').classList.add('is-active')
+    //   }
+    // })
+
+    // document.querySelector('.header__navcross').addEventListener('click', function() {
+    //   document.querySelector('.header__nav').classList.remove('is-active')
+    //   document.querySelector('.header__account').classList.remove('is-active')
+    // })
+
+
+    // document.querySelector('.header__searchicon-mobile').addEventListener('click', function() {
+    //   document.querySelector('.header__lower').classList.add('is-active')
+    //   document.querySelector('.header__desktop-search').classList.add('is-active')
+    // })
+
+    // document.querySelector('.header__searchcross').addEventListener('click', function() {
+    //   document.querySelector('.header__lower').classList.remove('is-active')
+    //   document.querySelector('.header__desktop-search').classList.remove('is-active')
+    // })
+
+
+  var selector = document.querySelector("input[type='tel']");
+  var im = new Inputmask("+7 (999) 999-99-99");
+  im.mask(selector);
+
+  new JustValidate('.contacts__form', {
+    rules: {
+      name: {
+        required: true,
+        minLength: 2,
+        maxLength: 20,
+        strength: {
+          custom: '^[a-zA-Z]+$'
+        }
+      },
+      tel: {
+        required: true,
+        function: (name, value) => {
+          const phone = selector.inputmask.unmaskedvalue()
+          return Number(phone) && phone.length === 10
+        }
+      },
+    },
+    messages: {
+      name: 'Недопустимый формат',
+      tel: 'Недопустимый формат',
+    },
+  })
+})
+
+// Events
+document.querySelector('.events__button').addEventListener('click', function() {
+  document.querySelectorAll('.events__event').forEach(function(eventContent) {
+    eventContent.classList.remove('event_hidden')
+  })
+  document.querySelectorAll('.events__event').forEach(function(eventContent) {
+    eventContent.classList.remove('third_event-status')
+  })
+  document.querySelector('.events__button').classList.add('button_hidden')
+  console.log(document.querySelector('.events__button'))
 })
 
 
