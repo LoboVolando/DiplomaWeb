@@ -57,10 +57,18 @@ window.addEventListener('DOMContentLoaded', function(){
     headerSelectLink.addEventListener('click', function(event) {
       const path = event.currentTarget.dataset.path
 
+      const category_lists = document.querySelectorAll('.header__itemlist')
+      for (let element of category_lists) {
+        if (element.getAttribute('data-target') === path) {
+          element.classList.toggle('is-active')
+        } else {
+          element.classList.remove('is-active')
+        }
+      }
       // document.querySelectorAll(`[data-target!="${path}"]`).forEach(function(tabContent) {
       //   tabContent.classList.remove('is-active')
       // })
-      document.querySelector(`[data-target="${path}"]`).classList.toggle('is-active')
+      // document.querySelector(`[data-target="${path}"]`).classList.toggle('is-active')
     })
   })
 
@@ -170,24 +178,21 @@ window.addEventListener('DOMContentLoaded', function(){
       type: 'fraction',
     },
     breakpoints: {
-      // when window width is >= 320px
       768: {
         slidesPerColumn: 2,
         slidesPerView: 2,
         spaceBetween: 34,
       },
-      // when window width is >= 480px
       1024: {
         slidesPerColumn: 2,
         slidesPerView: 2,
         spaceBetween: 34,
       },
-      // when window width is >= 640px
       1920: {
         slidesPerColumn: 2,
         slidesPerView: 3,
         spaceBetween: 42,
-      }
+      },
     },
     debugger: true,
   })
@@ -217,19 +222,15 @@ window.addEventListener('DOMContentLoaded', function(){
       type: 'fraction',
     },
 
-    // Default parameters
-    slidesPerView: 2,
-    spaceBetween: 34,
-    // Responsive breakpoints
     breakpoints: {
       1024: {
         slidesPerView: 2,
-        spaceBetween: 43,
+        spaceBetween: 40,
       },
       // when window width is >= 640px
       1920: {
         slidesPerView: 3,
-        spaceBetween: 0,
+        spaceBetween: 15,
       }
     },
     debugger: true,
@@ -278,8 +279,8 @@ window.addEventListener('DOMContentLoaded', function(){
   function init(){
     var myMap = new ymaps.Map("yandex__map", {
 
-      center: [55.75846806898367,37.60108849999989],
-      zoom: 13,
+      center: [55.76,37.60],
+      zoom: 14,
       controls: [],
     });
     myPlacemark = new ymaps.Placemark([55.75846806898367,37.60108849999989], {}, {
