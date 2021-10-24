@@ -9,6 +9,7 @@ window.addEventListener('DOMContentLoaded', function(){
   document.querySelector('.header__burger').addEventListener('keydown', function(e) {
     if (e.keyCode === 13) {
       document.querySelector('.header__nav').classList.add('is-active')
+      document.querySelector('.header__account').classList.add('is-active')
     }
   })
 
@@ -50,16 +51,32 @@ window.addEventListener('DOMContentLoaded', function(){
     })
   }
 
+  // Lower menu desktop
+
+  document.querySelectorAll('.header__stylelink').forEach(function(headerSelectLink) {
+    headerSelectLink.addEventListener('click', function(event) {
+      const path = event.currentTarget.dataset.path
+
+      // document.querySelectorAll(`[data-target!="${path}"]`).forEach(function(tabContent) {
+      //   tabContent.classList.remove('is-active')
+      // })
+      document.querySelector(`[data-target="${path}"]`).classList.toggle('is-active')
+    })
+  })
+
   // (function() {
   //   if (Viewport.width <= 768)
   //   {
-  //     const anchors1 = document.querySelectorAll('a.catalog__painterlink')
+  //     const anchors1 = document.querySelectorAll('.catalog__painterlink')
 
   //     for (let anchor1 of anchors1) {
   //       anchor1.addEventListener('click', function (e) {
   //         e.preventDefault()
 
-  //         document.querySelector('.catalog__painter-item').scrollIntoView({
+  //         const blockID = anchor.getAttribute('href').substr(1)
+  //         console.log(blockID)
+  //         console.log(document.querySelector(blockID))
+  //         document.getElementById(blockID).scrollIntoView({
   //           behavior: 'smooth',
   //           block: 'start'
   //         })
@@ -68,63 +85,63 @@ window.addEventListener('DOMContentLoaded', function(){
   //   }
   // })
 
-  const element = document.querySelector('.custom-select');
-  const choices = new Choices(element, {
-    classNames: {
-      containerOuter: 'heading__choices'
-    },
-    searchEnabled: false,
-    shouldSort: false,
-    placeholder: true,
-    itemSelectText: '',
-  });
+  // const element = document.querySelector('.custom-select');
+  // const choices = new Choices(element, {
+  //   classNames: {
+  //     containerOuter: 'heading__choices'
+  //   },
+  //   searchEnabled: false,
+  //   shouldSort: false,
+  //   placeholder: true,
+  //   itemSelectText: '',
+  // });
 
-  const element2 = document.querySelector('.custom-select2');
-  const choices2 = new Choices(element2, {
-    classNames: {
-      containerOuter: 'heading__choices'
-    },
-    searchEnabled: false,
-    shouldSort: false,
-    placeholder: true,
-    itemSelectText: '',
-  });
+  // const element2 = document.querySelector('.custom-select2');
+  // const choices2 = new Choices(element2, {
+  //   classNames: {
+  //     containerOuter: 'heading__choices'
+  //   },
+  //   searchEnabled: false,
+  //   shouldSort: false,
+  //   placeholder: true,
+  //   itemSelectText: '',
+  // });
 
-  const element3 = document.querySelector('.custom-select3');
-  const choices3 = new Choices(element3, {
-    classNames: {
-      containerOuter: 'heading__choices'
-    },
-    searchEnabled: false,
-    shouldSort: false,
-    placeholder: true,
-    itemSelectText: '',
-    resetScrollPosition: false,
-  });
+  // const element3 = document.querySelector('.custom-select3');
+  // const choices3 = new Choices(element3, {
+  //   classNames: {
+  //     containerOuter: 'heading__choices'
+  //   },
+  //   searchEnabled: false,
+  //   shouldSort: false,
+  //   placeholder: true,
+  //   itemSelectText: '',
+  //   resetScrollPosition: false,
+  // });
 
-  const element4 = document.querySelector('.custom-select4');
-  const choices4 = new Choices(element4, {
-    classNames: {
-      containerOuter: 'heading__choices'
-    },
-    searchEnabled: false,
-    shouldSort: false,
-    placeholder: true,
-    itemSelectText: '',
-    resetScrollPosition: false,
-  });
+  // const element4 = document.querySelector('.custom-select4');
+  // const choices4 = new Choices(element4, {
+  //   classNames: {
+  //     containerOuter: 'heading__choices'
+  //   },
+  //   searchEnabled: false,
+  //   shouldSort: false,
+  //   placeholder: true,
+  //   itemSelectText: '',
+  //   resetScrollPosition: false,
+  // });
 
-  const element5 = document.querySelector('.custom-select5');
-  const choices5 = new Choices(element5, {
-    classNames: {
-      containerOuter: 'heading__choices'
-    },
-    searchEnabled: false,
-    shouldSort: false,
-    placeholder: true,
-    itemSelectText: '',
-    resetScrollPosition: false,
-  });
+  // const element5 = document.querySelector('.custom-select5');
+  // const choices5 = new Choices(element5, {
+  //   classNames: {
+  //     containerOuter: 'heading__choices'
+  //   },
+  //   searchEnabled: false,
+  //   shouldSort: false,
+  //   placeholder: true,
+  //   itemSelectText: '',
+  //   resetScrollPosition: false,
+  // });
 
   const element6 = document.querySelector('.gallery-select');
   const choices6 = new Choices(element6, {
@@ -163,23 +180,22 @@ window.addEventListener('DOMContentLoaded', function(){
       1024: {
         slidesPerColumn: 2,
         slidesPerView: 2,
-        spaceBetween: 20,
+        spaceBetween: 34,
       },
       // when window width is >= 640px
       1920: {
         slidesPerColumn: 2,
         slidesPerView: 3,
-        spaceBetween: 20,
+        spaceBetween: 42,
       }
     },
     debugger: true,
   })
 
   const swiper2 = new Swiper('.events__swiper', {
-    loop: true,
     slidesPerColumn: 1,
     slidesPerView: 1,
-    spaceBetween: 20,
+    spaceBetween: 25,
     navigator: true,
     pagination: {
       el: '.swiper-pagination2',
@@ -191,10 +207,9 @@ window.addEventListener('DOMContentLoaded', function(){
 
   const swiper_3 = new Swiper('.publications__swiper', {
     navigation: {
-      nextEl: '.swiper-button-prev3',
-      prevEl: '.swiper-button-next3',
+      prevEl: '.swiper-button-prev3',
+      nextEl: '.swiper-button-next3',
     },
-    loop: true,
     slidesPerView: 2,
     spaceBetween: 34,
     pagination: {
@@ -209,7 +224,7 @@ window.addEventListener('DOMContentLoaded', function(){
     breakpoints: {
       1024: {
         slidesPerView: 2,
-        spaceBetween: 0,
+        spaceBetween: 43,
       },
       // when window width is >= 640px
       1920: {
@@ -220,12 +235,16 @@ window.addEventListener('DOMContentLoaded', function(){
     debugger: true,
   })
 
+  document.querySelector('.publications__selectlink').addEventListener('click', function() {
+    document.querySelector('.publications__categorieslist').classList.toggle('is-active')
+    document.querySelector('.publications__selectlink').classList.toggle('is-active')
+  })
+
   const swiper_4 = new Swiper('.projects__swiper', {
     navigation: {
-      nextEl: '.swiper-button-prev4',
-      prevEl: '.swiper-button-next4',
+      prevEl: '.swiper-button-prev4',
+      nextEl: '.swiper-button-next4',
     },
-    loop: true,
     slidesPerView: 1,
     spaceBetween: 30,
 
@@ -259,11 +278,11 @@ window.addEventListener('DOMContentLoaded', function(){
   function init(){
     var myMap = new ymaps.Map("yandex__map", {
 
-      center: [48.872185, 2.354224],
+      center: [55.75846806898367,37.60108849999989],
       zoom: 13,
       controls: [],
     });
-    myPlacemark = new ymaps.Placemark([48.872185, 2.354224], {}, {
+    myPlacemark = new ymaps.Placemark([55.75846806898367,37.60108849999989], {}, {
       iconLayout: 'default#image',
       iconImageHref: '/img/destination_point.svg',
       iconImageSize: [30, 42],
@@ -291,6 +310,13 @@ window.addEventListener('DOMContentLoaded', function(){
   });
 
   // First level tab
+  document.querySelectorAll('.catalog__painter').forEach(function(tabContent) {
+    tabContent.classList.add('play-accordion')
+  })
+
+  document.querySelectorAll(`[data-target="11"]`).forEach(function(tabContent) {
+    tabContent.classList.remove('play-accordion')
+  })
 
   document.querySelectorAll('.catalog__tabitem').forEach(function(sectionWorkNavLink) {
     sectionWorkNavLink.addEventListener('click', function(event) {
@@ -299,6 +325,7 @@ window.addEventListener('DOMContentLoaded', function(){
       document.querySelectorAll('.catalog__painter').forEach(function(tabContent) {
         tabContent.classList.add('play-accordion')
       })
+
       document.querySelectorAll('.catalog__tabitem').forEach(function(tabContent) {
         tabContent.classList.remove('is-active')
       })
@@ -325,12 +352,12 @@ window.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('.catalog__painter-item').forEach(function(tabContent) {
     tabContent.classList.remove('item_active')
   })
-  document.querySelector(`[data-target="111"]`).classList.add('item_active')
+  document.querySelector(`[data-target="000"]`).classList.add('item_active')
 
-  // document.querySelectorAll('.section-work__nav-link').forEach(function(tabContent) {
-  //   tabContent.classList.remove('nav-link_active')
-  // })
-  // document.querySelector(`[data-path="one"]`).classList.add('nav-link_active')
+  document.querySelectorAll('.catalog__painterlink').forEach(function(tabContent) {
+    tabContent.classList.remove('is-active')
+  })
+  document.querySelector(`[data-target="11"]`).classList.add('is-active')
 
 
   document.querySelectorAll('.catalog__painterlink').forEach(function(sectionWorkNavLink) {
@@ -417,6 +444,7 @@ window.addEventListener('DOMContentLoaded', function(){
       name: 'Недопустимый формат',
       tel: 'Недопустимый формат',
     },
+    colorWrong: 'red',
   })
 })
 
