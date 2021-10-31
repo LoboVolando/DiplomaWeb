@@ -18,6 +18,12 @@ window.addEventListener('DOMContentLoaded', function(){
     document.querySelector('.header__account').classList.remove('is-active')
   })
 
+  document.querySelector('.header__navcross').addEventListener('keydown', function(e) {
+    if (e.keyCode === 13) {
+      document.querySelector('.header__nav').classList.remove('is-active')
+      document.querySelector('.header__account').classList.remove('is-active')
+    }
+  })
 
   document.querySelector('.header__searchicon-mobile').addEventListener('click', function() {
     document.querySelector('.header__lower').classList.add('is-active')
@@ -57,7 +63,7 @@ window.addEventListener('DOMContentLoaded', function(){
     headerSelectLink.addEventListener('click', function(event) {
       const path = event.currentTarget.dataset.path
 
-      const category_lists = document.querySelectorAll('.header__itemlist')
+      const category_lists = document.querySelectorAll('.header__itemlist-conatiner')
       for (let element of category_lists) {
         if (element.getAttribute('data-target') === path) {
           element.classList.toggle('is-active')
@@ -71,6 +77,31 @@ window.addEventListener('DOMContentLoaded', function(){
       // document.querySelector(`[data-target="${path}"]`).classList.toggle('is-active')
     })
   })
+
+  new SimpleBar(document.querySelector(".simplebar"), {
+    autoHide: false,
+    scrollbarMaxSize: 30,
+  });
+
+  new SimpleBar(document.querySelector(".simplebar1"), {
+    autoHide: false,
+    scrollbarMaxSize: 30,
+  });
+
+  new SimpleBar(document.querySelector(".simplebar2"), {
+    autoHide: false,
+    scrollbarMaxSize: 30,
+  });
+
+  new SimpleBar(document.querySelector(".simplebar3"), {
+    autoHide: false,
+    scrollbarMaxSize: 30,
+  });
+
+  new SimpleBar(document.querySelector(".simplebar4"), {
+    autoHide: false,
+    scrollbarMaxSize: 30,
+  });
 
   // (function() {
   //   if (Viewport.width <= 768)
@@ -163,10 +194,23 @@ window.addEventListener('DOMContentLoaded', function(){
     resetScrollPosition: false,
   });
 
+  const swiper = new Swiper('.hero__swiper', {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    autoplay: {
+    delay: 5000
+  },
+  effect: "fade",
+  fadeEffect: {
+    crossFade: true
+  },
+  allowTouchMove: false,
+})
+
   const swiper1 = new Swiper('.gallery__swiper', {
     navigation: {
-      nextEl: '.swiper-button-next1',
-      prevEl: '.swiper-button-prev1',
+      prevEl: '.gallery__swiper-button-prev',
+      nextEl: '.gallery__swiper-button-next',
     },
     loop: true,
     slidesPerColumn: 1,
@@ -174,7 +218,7 @@ window.addEventListener('DOMContentLoaded', function(){
     spaceBetween: 20,
     navigator: true,
     pagination: {
-      el: '.swiper-pagination1',
+      el: '.gallery__pagination',
       type: 'fraction',
     },
     breakpoints: {
@@ -196,6 +240,31 @@ window.addEventListener('DOMContentLoaded', function(){
     },
     debugger: true,
   })
+
+  // const swiper_test = new Swiper('.test__swiper', {
+  //   navigation: {
+  //     prevEl: '.swiper-button-prev-test',
+  //     nextEl: '.swiper-button-next-test',
+  //   },
+  //   slidesPerView: 1,
+  //   spaceBetween: 34,
+  //   pagination: {
+  //     el: '.swiper-pagination-test',
+  //     type: 'fraction',
+  //   },
+
+  //   breakpoints: {
+  //     1024: {
+  //       slidesPerView: 2,
+  //       spaceBetween: 40,
+  //     },
+  //     1920: {
+  //       slidesPerView: 3,
+  //       spaceBetween: 15,
+  //     }
+  //   },
+  //   debugger: true,
+  // })
 
   const swiper2 = new Swiper('.events__swiper', {
     slidesPerColumn: 1,
@@ -247,28 +316,26 @@ window.addEventListener('DOMContentLoaded', function(){
       nextEl: '.swiper-button-next4',
     },
     slidesPerView: 1,
-    spaceBetween: 30,
-
-    // Default parameters
-    slidesPerView: 1,
-    spaceBetween: 10,
+    spaceBetween: 5,
     slidesPerColumn: 1,
+    centeredSlidesBounds: true,
     // Responsive breakpoints
     breakpoints: {
       // when window width is >= 320px
       768: {
+        centeredSlidesBounds: false,
         slidesPerView: 2,
-        spaceBetween: 34,
+        spaceBetween: 35,
       },
       // when window width is >= 480px
       1024: {
         slidesPerView: 2,
-        spaceBetween: 34,
+        spaceBetween: 51,
       },
       // when window width is >= 640px
       1920: {
         slidesPerView: 3,
-        spaceBetween: 34,
+        spaceBetween: 51,
       }
     },
     debugger: true,

@@ -142,7 +142,7 @@ h1, h2, h3, p {
   margin-left: 15px;
   margin-bottom: 24px;
   display: inline-flex;
-  visibility: hidden;
+  visibility: 0;
   opacity: 0;
   transition: visibility .3s ease-in-out, opacity .3s ease-in-out;
   outline: none;
@@ -166,7 +166,7 @@ h1, h2, h3, p {
 
 .header__nav.is-active .header__navcross {
   display: inline-flex;
-  visibility: visible;
+  visibility: 1;
   opacity: 1;
   transition: visibility .3s ease-in-out, opacity .3s ease-in-out;
 }
@@ -234,7 +234,7 @@ h1, h2, h3, p {
 .header__account {
   display: none;
   opacity: 0;
-  visibility: hidden;
+  visibility: 0;
   padding: 5px 32px;
   border: solid 3px var(--button-color);
   border-radius: 100px;
@@ -249,7 +249,7 @@ h1, h2, h3, p {
   margin-top: 10px;
   display: flex;
   opacity: 1;
-  visibility: visible;
+  visibility: 1;
   flex-direction: row-reverse;
   justify-content: space-between;
   align-content: center;
@@ -357,7 +357,7 @@ h1, h2, h3, p {
   position: absolute;
   top: 30px;
   right: 15px;
-  visibility: hidden;
+  visibility: 0;
   opacity: 0;
   transition: visibility .3s ease-in-out, opacity .3s ease-in-out;
   cursor: pointer;
@@ -380,7 +380,7 @@ h1, h2, h3, p {
 
 .header__desktop-search.is-active + .header__searchcross {
   display: flex;
-  visibility: visible;
+  visibility: 1;
   opacity: 1;
   transition: visibility .3s ease-in-out, opacity .3s ease-in-out;
 }
@@ -420,7 +420,7 @@ h1, h2, h3, p {
 
 .header__desktop-search {
   display: inline-flexbox;
-  visibility: visible;
+  visibility: 1;
   opacity: 1;
   /* background-color: transparent; */
   transition: visibility 0s ease-in-out, opacity 0s ease-in-out;
@@ -527,7 +527,7 @@ h1, h2, h3, p {
   border: solid 3px var(--button-color);
   outline: 3px solid transparent;
   outline-offset: 3px;
-  transition: background-color .3s ease-in-out, border-color .3s ease-in-out, outline.3s ease-in-out;
+  transition: background-color .3s ease-in-out, border-color .3 ease-in-out, outline.3s ease-in-out;
 }
 
 .hero__button:focus {
@@ -538,14 +538,14 @@ h1, h2, h3, p {
 .hero__button:hover {
   outline: none;
   border-color: var(--hover-color);
-  transition: border-color .3s ease-in-out;
+  transition: border-color .3 ease-in-out;
 }
 
 .hero__button:active {
   outline: none;
   border-color:var(--hover-color);
   background-color: var(--active-color);
-  transition: background-color .3s ease-in-out, border-color .3s ease-in-out;
+  transition: background-color .3s ease-in-out, border-color .3 ease-in-out;
 }
 
 .hero__swiper {
@@ -819,6 +819,11 @@ h1, h2, h3, p {
   width: 290px;
   height: 420px;
   margin-bottom: 10px;
+}
+
+.gallery__wrapper.swiper-wrapper {
+  position: relative;
+  margin-bottom: 20px;
 }
 
 .gallery__slide {
@@ -2430,7 +2435,7 @@ h1, h2, h3, p {
   }
 
   .header__logo {
-    width: 187.6px;
+    width: 187,6px;
     height: 42px;
     /* margin-bottom: 20px; */
   }
@@ -3200,7 +3205,7 @@ h1, h2, h3, p {
   }
 
   .footer__logo {
-    width: 187.6px;
+    width: 187,6px;
     height: 42px;
   }
 
@@ -3875,7 +3880,7 @@ h1, h2, h3, p {
   }
 
   .footer__logo {
-    width: 187.6px;
+    width: 187,6px;
     height: 42px;
   }
 }
@@ -3970,7 +3975,6 @@ h1, h2, h3, p {
   .header__account {
     z-index: 0;
     opacity: 1;
-    visibility: visible;
     top: inherit;
     bottom: inherit;
     position: relative;
@@ -4377,9 +4381,9 @@ h1, h2, h3, p {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    visibility: visible;
+    visibility: 1;
     opacity: 1;
-    transition: visibility .3s ease-in-out, opacity .3s ease-in-out;
+    transition: visibility 0s ease-in-out, opacity 0s ease-in-out;
   }
 
   .header__searchinput {
