@@ -212,7 +212,7 @@ window.addEventListener('DOMContentLoaded', function(){
       prevEl: '.gallery__swiper-button-prev',
       nextEl: '.gallery__swiper-button-next',
     },
-    loop: true,
+    // loop: true,
     slidesPerColumn: 1,
     slidesPerView: 1,
     spaceBetween: 20,
@@ -235,7 +235,7 @@ window.addEventListener('DOMContentLoaded', function(){
       1920: {
         slidesPerColumn: 2,
         slidesPerView: 3,
-        spaceBetween: 42,
+        spaceBetween: 50,
       },
     },
     debugger: true,
