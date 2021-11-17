@@ -25,14 +25,49 @@ window.addEventListener('DOMContentLoaded', function(){
     }
   })
 
-  document.querySelector('.header__searchicon-mobile').addEventListener('click', function() {
-    document.querySelector('.header__lower').classList.add('is-active')
-    document.querySelector('.header__desktop-search').classList.add('is-active')
+  const searchIcon = document.querySelector('.header__searchicon-mobile')
+  const searchCross = document.querySelector('.header__searchcross')
+  const lowerMenu = document.querySelector('.header__lower')
+  const searchBlock = document.querySelector('.header__desktop-search')
+  const clickClose = function() {
+    lowerMenu.classList.remove('is-active')
+    searchBlock.classList.remove('is-active')
+  }
+
+  document.addEventListener('click', function(e) {
+    const target = e.target;
+    const its_btnMenu = target == document.querySelector('.header__searchinput');
+    const menu_is_active = lowerMenu.classList.contains('is-active');
+
+    if (target == searchIcon) {
+      lowerMenu.classList.add('is-active')
+      searchBlock.classList.add('is-active')
+    } else {
+      if (!its_btnMenu && menu_is_active) {
+        clickClose()
+      }
+    }
+  });
+
+  searchIcon.addEventListener('keydown', function(e) {
+    if (e.keyCode === 13) {
+      lowerMenu.classList.add('is-active')
+      searchBlock.classList.add('is-active')
+      console.log('Yes')
+    }
   })
 
-  document.querySelector('.header__searchcross').addEventListener('click', function() {
-    document.querySelector('.header__lower').classList.remove('is-active')
-    document.querySelector('.header__desktop-search').classList.remove('is-active')
+  searchCross.addEventListener('click', function() {
+    clickClose()
+    console.log('No')
+  })
+
+
+  searchCross.addEventListener('keydown', function(e) {
+    if (e.keyCode === 13) {
+      lowerMenu.classList.remove('is-active')
+      searchBlock.classList.remove('is-active')
+    }
   })
 
   // Scrolling
@@ -71,10 +106,6 @@ window.addEventListener('DOMContentLoaded', function(){
           element.classList.remove('is-active')
         }
       }
-      // document.querySelectorAll(`[data-target!="${path}"]`).forEach(function(tabContent) {
-      //   tabContent.classList.remove('is-active')
-      // })
-      // document.querySelector(`[data-target="${path}"]`).classList.toggle('is-active')
     })
   })
 
@@ -113,8 +144,6 @@ window.addEventListener('DOMContentLoaded', function(){
   //         e.preventDefault()
 
   //         const blockID = anchor.getAttribute('href').substr(1)
-  //         console.log(blockID)
-  //         console.log(document.querySelector(blockID))
   //         document.getElementById(blockID).scrollIntoView({
   //           behavior: 'smooth',
   //           block: 'start'
@@ -124,66 +153,8 @@ window.addEventListener('DOMContentLoaded', function(){
   //   }
   // })
 
-  // const element = document.querySelector('.custom-select');
-  // const choices = new Choices(element, {
-  //   classNames: {
-  //     containerOuter: 'heading__choices'
-  //   },
-  //   searchEnabled: false,
-  //   shouldSort: false,
-  //   placeholder: true,
-  //   itemSelectText: '',
-  // });
-
-  // const element2 = document.querySelector('.custom-select2');
-  // const choices2 = new Choices(element2, {
-  //   classNames: {
-  //     containerOuter: 'heading__choices'
-  //   },
-  //   searchEnabled: false,
-  //   shouldSort: false,
-  //   placeholder: true,
-  //   itemSelectText: '',
-  // });
-
-  // const element3 = document.querySelector('.custom-select3');
-  // const choices3 = new Choices(element3, {
-  //   classNames: {
-  //     containerOuter: 'heading__choices'
-  //   },
-  //   searchEnabled: false,
-  //   shouldSort: false,
-  //   placeholder: true,
-  //   itemSelectText: '',
-  //   resetScrollPosition: false,
-  // });
-
-  // const element4 = document.querySelector('.custom-select4');
-  // const choices4 = new Choices(element4, {
-  //   classNames: {
-  //     containerOuter: 'heading__choices'
-  //   },
-  //   searchEnabled: false,
-  //   shouldSort: false,
-  //   placeholder: true,
-  //   itemSelectText: '',
-  //   resetScrollPosition: false,
-  // });
-
-  // const element5 = document.querySelector('.custom-select5');
-  // const choices5 = new Choices(element5, {
-  //   classNames: {
-  //     containerOuter: 'heading__choices'
-  //   },
-  //   searchEnabled: false,
-  //   shouldSort: false,
-  //   placeholder: true,
-  //   itemSelectText: '',
-  //   resetScrollPosition: false,
-  // });
-
-  const element6 = document.querySelector('.gallery-select');
-  const choices6 = new Choices(element6, {
+  const element = document.querySelector('.gallery-select');
+  const choices = new Choices(element, {
     classNames: {
       containerOuter: 'gallery__choices',
     },
@@ -195,6 +166,7 @@ window.addEventListener('DOMContentLoaded', function(){
   });
 
   const swiper = new Swiper('.hero__swiper', {
+    speed: 4000,
     slidesPerView: 1,
     spaceBetween: 10,
     autoplay: {
@@ -202,7 +174,7 @@ window.addEventListener('DOMContentLoaded', function(){
   },
   effect: "fade",
   fadeEffect: {
-    crossFade: true
+    crossFade: true,
   },
   allowTouchMove: false,
 })
@@ -211,6 +183,7 @@ window.addEventListener('DOMContentLoaded', function(){
     navigation: {
       prevEl: '.gallery__swiper-button-prev',
       nextEl: '.gallery__swiper-button-next',
+      disabledClass: 'gallery__swiper-button-disabled',
     },
     // loop: true,
     slidesPerColumn: 1,
@@ -235,36 +208,12 @@ window.addEventListener('DOMContentLoaded', function(){
       1920: {
         slidesPerColumn: 2,
         slidesPerView: 3,
+        slidesPerGroup: 3,
         spaceBetween: 50,
       },
     },
     debugger: true,
   })
-
-  // const swiper_test = new Swiper('.test__swiper', {
-  //   navigation: {
-  //     prevEl: '.swiper-button-prev-test',
-  //     nextEl: '.swiper-button-next-test',
-  //   },
-  //   slidesPerView: 1,
-  //   spaceBetween: 34,
-  //   pagination: {
-  //     el: '.swiper-pagination-test',
-  //     type: 'fraction',
-  //   },
-
-  //   breakpoints: {
-  //     1024: {
-  //       slidesPerView: 2,
-  //       spaceBetween: 40,
-  //     },
-  //     1920: {
-  //       slidesPerView: 3,
-  //       spaceBetween: 15,
-  //     }
-  //   },
-  //   debugger: true,
-  // })
 
   const swiper2 = new Swiper('.events__swiper', {
     slidesPerColumn: 1,
@@ -281,8 +230,9 @@ window.addEventListener('DOMContentLoaded', function(){
 
   const swiper_3 = new Swiper('.publications__swiper', {
     navigation: {
-      prevEl: '.swiper-button-prev3',
-      nextEl: '.swiper-button-next3',
+      prevEl: '.publications__swiper-button-prev',
+      nextEl: '.publications__swiper-button-next',
+      disabledClass: 'publications__swiper-button-disabled',
     },
     slidesPerView: 2,
     spaceBetween: 34,
@@ -294,9 +244,8 @@ window.addEventListener('DOMContentLoaded', function(){
     breakpoints: {
       1024: {
         slidesPerView: 2,
-        spaceBetween: 40,
+        spaceBetween: 34,
       },
-      // when window width is >= 640px
       1920: {
         slidesPerView: 3,
         spaceBetween: 15,
@@ -305,15 +254,47 @@ window.addEventListener('DOMContentLoaded', function(){
     debugger: true,
   })
 
+  const categories = document.querySelectorAll('.publications__element')
+  if (document.documentElement.clientWidth <= 767) {
+    for (let element of categories) {
+      element.classList.add('hiden')
+    }
+  }
+
   document.querySelector('.publications__selectlink').addEventListener('click', function() {
-    document.querySelector('.publications__categorieslist').classList.toggle('is-active')
     document.querySelector('.publications__selectlink').classList.toggle('is-active')
+    if (document.querySelector('.publications__selectlink').classList.contains('is-active')) {
+      for (let element of categories) {
+        element.classList.remove('hiden')
+        element.children[1].classList.add('hiden')
+      }
+    } else {
+      for (let element of categories) {
+        child = element.children[0].children[0]
+        if (!child.checked) {
+          element.classList.add('hiden')
+        } else {
+          element.children[1].classList.remove('hiden')
+        }
+      }
+    }
+  })
+
+  // Remove by the cross FUNCTION
+
+
+  document.querySelectorAll('.publications__categorycross').forEach(function(categoryRemove) {
+    categoryRemove.addEventListener('click', function(event) {
+      const path = event.currentTarget.dataset.path
+      document.querySelector(`[data-target="${path}"]`).classList.add('hiden')
+    })
   })
 
   const swiper_4 = new Swiper('.projects__swiper', {
     navigation: {
-      prevEl: '.swiper-button-prev4',
-      nextEl: '.swiper-button-next4',
+      prevEl: '.projects__swiper-button-prev',
+      nextEl: '.projects__swiper-button-next',
+      disabledClass: 'projects__swiper-button-disabled',
     },
     slidesPerView: 1,
     spaceBetween: 5,
@@ -335,7 +316,7 @@ window.addEventListener('DOMContentLoaded', function(){
       // when window width is >= 640px
       1920: {
         slidesPerView: 3,
-        spaceBetween: 51,
+        spaceBetween: 52,
       }
     },
     debugger: true,
@@ -382,7 +363,7 @@ window.addEventListener('DOMContentLoaded', function(){
     tabContent.classList.add('play-accordion')
   })
 
-  document.querySelectorAll(`[data-target="11"]`).forEach(function(tabContent) {
+  document.querySelectorAll(`[data-target="31"]`).forEach(function(tabContent) {
     tabContent.classList.remove('play-accordion')
   })
 
@@ -420,12 +401,8 @@ window.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('.catalog__painter-item').forEach(function(tabContent) {
     tabContent.classList.remove('item_active')
   })
-  document.querySelector(`[data-target="000"]`).classList.add('item_active')
-
-  document.querySelectorAll('.catalog__painterlink').forEach(function(tabContent) {
-    tabContent.classList.remove('is-active')
-  })
-  document.querySelector(`[data-target="11"]`).classList.add('is-active')
+  document.querySelector(`[data-target="322"]`).classList.add('item_active')
+  document.querySelector(`[data-target="31"]`).classList.add('is-active')
 
 
   document.querySelectorAll('.catalog__painterlink').forEach(function(sectionWorkNavLink) {
@@ -439,7 +416,15 @@ window.addEventListener('DOMContentLoaded', function(){
         tabContent.classList.remove('is-active')
       })
       document.querySelector(`[data-path="${path}"]`).classList.add('is-active')
-      document.querySelector(`[data-target="${path}"]`).classList.add('item_active')
+      const painter = document.querySelector(`[data-target="${path}"]`)
+      painter.classList.add('item_active')
+
+      if (document.documentElement.clientWidth <= 1024) {
+        painter.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
     })
   })
 
@@ -527,5 +512,3 @@ document.querySelector('.events__button').addEventListener('click', function() {
   document.querySelector('.events__button').classList.add('button_hidden')
   console.log(document.querySelector('.events__button'))
 })
-
-
