@@ -20,22 +20,6 @@ if ( $method === 'POST' ) {
 			";
 		}
 	}
-} else if ( $method === 'GET' ) {
-
-	$project_name = trim($_GET["project_name"]);
-	$admin_email  = trim($_GET["admin_email"]);
-	$form_subject = trim($_GET["form_subject"]);
-
-	foreach ( $_GET as $key => $value ) {
-		if ( $value != "" && $key != "project_name" && $key != "admin_email" && $key != "form_subject" ) {
-			$message .= "
-			" . ( ($c = !$c) ? '<tr>':'<tr>' ) . "
-				<td style='padding: 10px; width: auto;'><b>$key:</b></td>
-				<td style='padding: 10px;width: 100%;'>$value</td>
-			</tr>
-			";
-		}
-	}
 }
 
 $message = "<table style='width: 50%;'>$message</table>";
@@ -50,3 +34,5 @@ $headers = "MIME-Version: 1.0" . PHP_EOL .
 'Reply-To: '.$admin_email.'' . PHP_EOL;
 
 mail($admin_email, adopt($form_subject), $message, $headers );
+header('Location: http://blanchard.cx36869.tmweb.ru/');
+?>

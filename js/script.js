@@ -134,25 +134,6 @@ window.addEventListener('DOMContentLoaded', function(){
     scrollbarMaxSize: 30,
   });
 
-  // (function() {
-  //   if (Viewport.width <= 768)
-  //   {
-  //     const anchors1 = document.querySelectorAll('.catalog__painterlink')
-
-  //     for (let anchor1 of anchors1) {
-  //       anchor1.addEventListener('click', function (e) {
-  //         e.preventDefault()
-
-  //         const blockID = anchor.getAttribute('href').substr(1)
-  //         document.getElementById(blockID).scrollIntoView({
-  //           behavior: 'smooth',
-  //           block: 'start'
-  //         })
-  //       })
-  //     }
-  //   }
-  // })
-
   const element = document.querySelector('.gallery-select');
   const choices = new Choices(element, {
     classNames: {
@@ -218,7 +199,8 @@ window.addEventListener('DOMContentLoaded', function(){
   const swiper2 = new Swiper('.events__swiper', {
     slidesPerColumn: 1,
     slidesPerView: 1,
-    spaceBetween: 25,
+    spaceBetween: 10,
+    centeredSlides: true,
     navigator: true,
     pagination: {
       el: '.swiper-pagination2',
@@ -279,9 +261,6 @@ window.addEventListener('DOMContentLoaded', function(){
       }
     }
   })
-
-  // Remove by the cross FUNCTION
-
 
   document.querySelectorAll('.publications__categorycross').forEach(function(categoryRemove) {
     categoryRemove.addEventListener('click', function(event) {
@@ -397,6 +376,17 @@ window.addEventListener('DOMContentLoaded', function(){
     });
   });
 
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("accordion").accordion({
+      collapsible: true,
+      icons: false,
+      border: false,
+      active: false,
+      heightStyle: "content",
+      autoHeight: false,
+    });
+  });
+
   // Tabs
   document.querySelectorAll('.catalog__painter-item').forEach(function(tabContent) {
     tabContent.classList.remove('item_active')
@@ -428,49 +418,6 @@ window.addEventListener('DOMContentLoaded', function(){
     })
   })
 
-  // document.querySelectorAll('.section-work__nav-link').forEach(function(sectionWorkNavLink) {
-  //   sectionWorkNavLink.addEventListener('keydown', function(event) {
-  //     if (event.keyCode === 13) {
-
-  //       const path = event.currentTarget.dataset.path
-  //       document.querySelectorAll('.section-work__body').forEach(function(tabContent) {
-  //         tabContent.classList.remove('tab-content-active')
-  //       })
-  //       document.querySelectorAll('.section-work__nav-link').forEach(function(tabContent) {
-  //         tabContent.classList.remove('nav-link_active')
-  //       })
-
-  //       document.querySelector(`[data-target="${path}"]`).classList.add('tab-content-active')
-  //       document.querySelector(`[data-path="${path}"]`).classList.add('nav-link_active')
-  //     }
-  //   })
-  // })
-
-
-
-    // document.querySelector('.header__burger').addEventListener('keydown', function(e) {
-    //   if (e.keyCode === 13) {
-    //     document.querySelector('.header__nav').classList.add('is-active')
-    //   }
-    // })
-
-    // document.querySelector('.header__navcross').addEventListener('click', function() {
-    //   document.querySelector('.header__nav').classList.remove('is-active')
-    //   document.querySelector('.header__account').classList.remove('is-active')
-    // })
-
-
-    // document.querySelector('.header__searchicon-mobile').addEventListener('click', function() {
-    //   document.querySelector('.header__lower').classList.add('is-active')
-    //   document.querySelector('.header__desktop-search').classList.add('is-active')
-    // })
-
-    // document.querySelector('.header__searchcross').addEventListener('click', function() {
-    //   document.querySelector('.header__lower').classList.remove('is-active')
-    //   document.querySelector('.header__desktop-search').classList.remove('is-active')
-    // })
-
-
   var selector = document.querySelector("input[type='tel']");
   var im = new Inputmask("+7 (999) 999-99-99");
   im.mask(selector);
@@ -494,10 +441,14 @@ window.addEventListener('DOMContentLoaded', function(){
       },
     },
     messages: {
-      name: 'Недопустимый формат',
+      name: {
+        minLength: 'Минимум 2 символа',
+        maxLength: 'Максимум 20 символов',
+        strength: 'Недопустимый формат',
+      },
       tel: 'Недопустимый формат',
     },
-    colorWrong: 'red',
+    colorWrong: 'red'
   })
 })
 
